@@ -21,8 +21,9 @@ while (true) {
         $contactManager = new ContactManager();
         $command = new Command($contactManager);
         $command->list();
-
-        break;
+    } elseif (preg_match('/^detail\s+(?P<id>\d+)$/', $line, $matches)) {
+        $id = (int) $matches['id'];
+        echo  $id;
     } else {
         echo "cette commande n'existe pas  : $line\n";
     }
