@@ -8,6 +8,9 @@ while (true) {
         $manager = new ContactManager;
         $test =  $manager->findAll();
         var_dump($test);
+        $contact = new Contact;
+        $test2 =  $contact->toString();
+        var_dump($test2);
         return;
     } else {
         echo "Vous avez saisi : $line\n";
@@ -47,5 +50,44 @@ class ContactManager
     {
         $contacts = [];
         return $contacts;
+    }
+}
+
+class Contact
+{
+    private int $id;
+    private string $name;
+    private string $email;
+    private string $phone_number;
+
+    public function getId(): int|null
+    {
+        return self::$id;
+    }
+
+    public function getName(): string|null
+    {
+        return self::$name;
+    }
+
+    public function setName(string $name) {}
+
+    public function getEmail(): string|null
+    {
+        return self::$email;
+    }
+
+    public function setEmail(string $email) {}
+
+    public function getPhoneNumber(): string|null
+    {
+        return self::$phone_number;
+    }
+
+    public function setPhoneNumber(string $phone_number) {}
+
+    public function toString(): string
+    {
+        return 'test de base';
     }
 }
