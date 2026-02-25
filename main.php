@@ -18,7 +18,9 @@ while (true) {
     echo PHP_EOL;
     if ($line === "list") {
 
-        new Command(new ContactManager())->list();
+        $contactManager = new ContactManager();
+        $command = new Command($contactManager);
+        $command->list();
 
         break;
     } else {
