@@ -11,14 +11,14 @@ spl_autoload_register(static function (string $fqcn) {
 });
 
 use App\Repository\ContactManager;
-use App\Command\ListContacts;
+use App\Cli\Command;
 
 while (true) {
     $line = trim(readline("Entrez votre commande : "));
     echo PHP_EOL;
     if ($line === "list") {
 
-        new ListContacts(new ContactManager())->execute();
+        new Command(new ContactManager())->list();
 
         break;
     } else {

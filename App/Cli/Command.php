@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Command;
+namespace App\Cli;
 
 use App\Repository\ContactManager;
 
-class ListContacts
+class Command
 {
     public function __construct(private ContactManager $contactManager) {}
 
-    public function execute(): void
+    public function list(): void
     {
         $contacts = $this->contactManager->findAll();
 
