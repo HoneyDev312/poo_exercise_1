@@ -16,4 +16,11 @@ class Command
             echo $contact->toString();
         }
     }
+
+    public function detail(int $id): void
+    {
+        $contact = $this->contactManager->findById($id);
+
+        echo $contact->toString();
+    }
 }

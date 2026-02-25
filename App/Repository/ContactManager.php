@@ -39,4 +39,27 @@ class ContactManager
 
         return $contacts;
     }
+
+    public function findById(string $id)
+    {
+        $statement = $this->connection->prepare(
+            "SELECT id, name, email, phone_number FROM contact WHERE id = :id"
+        );
+
+        $statement->execute(['id' => $id]);
+
+        $contact = "";
+
+        while (($row = $statement->fetch())) {
+            $contact = new Contact();
+            $contact->id = (int) $row['id'];
+            $contact->name = $row['name'];
+            $contact->email = $row['email'];
+            $contact->phone_number = $row['phone_number'];
+
+            $contacts[] = $contact;
+        }
+
+        return $contact;
+    }
 }
