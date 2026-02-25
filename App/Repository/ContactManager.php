@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-require_once('DBConnect.php');
-require_once('Contact.php');
+namespace App\Repository;
+
+use App\Entity\Contact;
+use App\Database\DBConnect;
 
 class ContactManager
 {
 
-    private PDO $connection;
+    private \PDO $connection;
 
     public function __construct()
     {
@@ -27,7 +29,7 @@ class ContactManager
 
         while (($row = $statement->fetch())) {
             $contact = new Contact();
-            $contact->id = $row['id'];
+            $contact->id = (int) $row['id'];
             $contact->name = $row['name'];
             $contact->email = $row['email'];
             $contact->phone_number = $row['phone_number'];
