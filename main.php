@@ -11,16 +11,17 @@ spl_autoload_register(static function (string $fqcn) {
 });
 
 use App\Repository\ContactManager;
+use App\Cli\Command;
 
 while (true) {
     $line = trim(readline("Entrez votre commande : "));
     echo PHP_EOL;
     if ($line === "list") {
-        $contacts = new ContactManager()->findAll();
 
-        foreach ($contacts as $contact) {
-            echo $contact->toString();
-        }
+        $contactManager = new ContactManager();
+        $command = new Command($contactManager);
+        $command->list();
+
         break;
     } else {
         echo "cette commande n'existe pas  : $line\n";
