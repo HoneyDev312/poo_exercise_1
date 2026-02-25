@@ -4,8 +4,9 @@ while (true) {
     if ($line === "list") {
         echo "Affichage de la list";
         $connection = new DBConnect;
-        $test = $connection->getConnection();
         var_dump($connection);
+        $manager = new ContactManager;
+        $test =  $manager->findAll();
         var_dump($test);
         return;
     } else {
@@ -36,5 +37,15 @@ class DBConnect
             );
         }
         return $this->database;
+    }
+}
+
+class ContactManager
+{
+
+    public function findAll(): array
+    {
+        $contacts = [];
+        return $contacts;
     }
 }
