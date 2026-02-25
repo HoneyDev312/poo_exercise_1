@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\Entity;
+
 class Contact
 {
     public ?int $id;
@@ -17,7 +19,7 @@ class Contact
         $this->phone_number = $phone_number;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -32,24 +34,24 @@ class Contact
         return $this->name;
     }
 
-    public function setEmail(string $name): void
+    public function setEmail(string $email): void
     {
-        $this->name = $name;
+        $this->email = $email;
     }
 
     public function getEmail(): string
     {
-        return $this->name;
+        return $this->email;
     }
 
-    public function setPhoneNumber(string $name): void
+    public function setPhoneNumber(string $phone_number): void
     {
-        $this->name = $name;
+        $this->phone_number = $phone_number;
     }
 
     public function getPhoneNumber(): string
     {
-        return $this->name;
+        return $this->phone_number;
     }
 
     public function toString(): string

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\Database;
+
 class DBConnect
 {
     const MYSQL_HOST = '127.0.0.1';

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-require_once('DBConnect.php');
-require_once('ContactManager.php');
-require_once('Contact.php');
+require_once('App/Repository/ContactManager.php');
+require_once('App/Entity/Contact.php');
+
+use App\Repository\ContactManager;
 
 while (true) {
     $line = trim(readline("Entrez votre commande : "));

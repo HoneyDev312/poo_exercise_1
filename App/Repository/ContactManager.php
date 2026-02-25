@@ -2,13 +2,18 @@
 
 declare(strict_types=1);
 
-require_once('DBConnect.php');
-require_once('Contact.php');
+namespace App\Repository;
+
+require_once('App/Database/DBConnect.php');
+require_once('App/Entity/Contact.php');
+
+use App\Entity\Contact;
+use App\Database\DBConnect;
 
 class ContactManager
 {
 
-    private PDO $connection;
+    private \PDO $connection;
 
     public function __construct()
     {
