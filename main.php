@@ -2,8 +2,13 @@
 
 declare(strict_types=1);
 
-require_once('App/Repository/ContactManager.php');
-require_once('App/Entity/Contact.php');
+spl_autoload_register(static function (string $fqcn) {
+    $path = str_replace('\\', '/', $fqcn) . '.php';
+
+    if (file_exists($path)) {
+        require_once $path;
+    }
+});
 
 use App\Repository\ContactManager;
 
