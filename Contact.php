@@ -55,11 +55,13 @@ class Contact
     public function toString(): string
     {
         return sprintf(
-            '%s, %s, %s, %s',
+            '%s, %s, %s, %s%s%s',
             $this->id ?? 'null',
             $this->name,
             $this->email,
-            $this->phone_number
+            $this->phone_number,
+            PHP_EOL,
+            PHP_EOL
         );
     }
 }

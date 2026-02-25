@@ -7,17 +7,16 @@ require_once('ContactManager.php');
 require_once('Contact.php');
 
 while (true) {
-    $line = readline("Entrez votre commande : ");
+    $line = trim(readline("Entrez votre commande : "));
+    echo PHP_EOL;
     if ($line === "list") {
-        echo "Affichage de la list";
-        $manager = new ContactManager;
-        $test =  $manager->findAll();
-        var_dump($test);
-        $contact = new Contact;
-        $test2 =  $contact->toString();
-        var_dump($test2);
-        return;
+        $contacts = new ContactManager()->findAll();
+
+        foreach ($contacts as $contact) {
+            echo $contact->toString();
+        }
+        break;
     } else {
-        echo "Vous avez saisi : $line\n";
+        echo "cette commande n'existe pas  : $line\n";
     }
 }

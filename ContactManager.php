@@ -27,7 +27,7 @@ class ContactManager
 
         while (($row = $statement->fetch())) {
             $contact = new Contact();
-            $contact->id = $row['id'];
+            $contact->id = (int) $row['id'];
             $contact->name = $row['name'];
             $contact->email = $row['email'];
             $contact->phone_number = $row['phone_number'];
