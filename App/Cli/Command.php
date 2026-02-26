@@ -6,13 +6,18 @@ use App\Repository\ContactManager;
 
 class Command
 {
-    // Reçoit le repository pour accéder aux opérations sur les contacts
+    // Constructeur de la classe. Initialise le manager de Contact
     public function __construct(private ContactManager $contactManager) {}
 
     public function list(): void
     {
         // Récupère puis affiche tous les contacts
         $contacts = $this->contactManager->findAll();
+
+        if (empty($contacts)) {
+            echo "Aucun contact" . PHP_EOL;
+            return;
+        }
 
         foreach ($contacts as $contact) {
             echo $contact;
@@ -23,6 +28,11 @@ class Command
     {
         // Récupère et affiche un contact à partir de son id
         $contact = $this->contactManager->findById($id);
+
+        if (!$contact) {
+            echo "Contact non trouvé" . PHP_EOL;
+            return;
+        }
 
         echo $contact;
     }
