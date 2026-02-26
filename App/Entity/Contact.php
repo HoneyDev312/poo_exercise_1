@@ -54,7 +54,7 @@ class Contact
         return $this->phone_number;
     }
 
-    public function toString(): string
+    public function __toString(): string
     {
         return sprintf(
             '%s, %s, %s, %s%s%s',
