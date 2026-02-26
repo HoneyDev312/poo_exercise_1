@@ -14,11 +14,13 @@ class ContactManager
 
     public function __construct()
     {
+        // Récupère une connexion PDO à la base de données
         $this->connection = (new DBConnect())->getConnection();
     }
 
     public function findAll(): array
     {
+        // Récupère tous les contacts
         $statement = $this->connection->prepare(
             "SELECT id, name, email, phone_number FROM contact"
         );
@@ -27,6 +29,7 @@ class ContactManager
 
         $contacts = [];
 
+        // Transforme chaque ligne SQL en objet Contact
         while (($row = $statement->fetch())) {
             $contact = new Contact();
             $contact->id = (int) $row['id'];
@@ -42,6 +45,7 @@ class ContactManager
 
     public function findById(string $id)
     {
+        // Récupère un contact à partir de son id
         $statement = $this->connection->prepare(
             "SELECT id, name, email, phone_number FROM contact WHERE id = :id"
         );
@@ -56,8 +60,6 @@ class ContactManager
             $contact->name = $row['name'];
             $contact->email = $row['email'];
             $contact->phone_number = $row['phone_number'];
-
-            $contacts[] = $contact;
         }
 
         return $contact;
@@ -65,6 +67,7 @@ class ContactManager
 
     public function createContact(string $name, string $email, string $phone_number): bool
     {
+        // Insère un nouveau contact en base
         $statement = $this->connection->prepare(
             "INSERT INTO contact(name, email, phone_number) VALUES (:name, :email, :phone_number)"
         );
@@ -80,6 +83,7 @@ class ContactManager
 
     public function updateContact(int $id, string $name, string $email, string $phone_number): bool
     {
+        // Met à jour un contact existant
         $statement = $this->connection->prepare(
             "UPDATE contact SET name = :name , email = :email, phone_number =:phone_number WHERE id = :id"
         );
@@ -96,6 +100,7 @@ class ContactManager
 
     public function delete(string $id): bool
     {
+        // Supprime un contact par son id
         $statement = $this->connection->prepare(
             "DELETE FROM contact WHERE id = :id"
         );
