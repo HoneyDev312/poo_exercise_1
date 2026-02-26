@@ -13,7 +13,7 @@ class Command
         $contacts = $this->contactManager->findAll();
 
         foreach ($contacts as $contact) {
-            echo $contact->toString();
+            echo $contact;
         }
     }
 
@@ -21,7 +21,7 @@ class Command
     {
         $contact = $this->contactManager->findById($id);
 
-        echo $contact->toString();
+        echo $contact;
     }
 
     public function create(string $name, string $email, string $phone_number): void
