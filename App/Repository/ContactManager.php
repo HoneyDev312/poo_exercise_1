@@ -62,4 +62,30 @@ class ContactManager
 
         return $contact;
     }
+
+    public function createContact(string $name, string $email, string $phone_number): bool
+    {
+        $statement = $this->connection->prepare(
+            "INSERT INTO contact(name, email, phone_number) VALUES (:name, :email, :phone_number)"
+        );
+
+        $affectedLines = $statement->execute([
+            'name' => $name,
+            'email' => $email,
+            'phone_number' => $phone_number,
+        ]);
+
+        return ($affectedLines > 0);
+    }
+
+    public function delete(string $id): bool
+    {
+        $statement = $this->connection->prepare(
+            "DELETE FROM contact WHERE id = :id"
+        );
+
+        $affectedLines = $statement->execute(['id' => $id]);
+
+        return ($affectedLines > 0);
+    }
 }
