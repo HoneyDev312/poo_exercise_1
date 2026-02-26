@@ -47,6 +47,25 @@ while (true) {
             $command = new Command($contactManager);
             $command->create($name, $email, $phone_number);
         }
+    } elseif (preg_match(
+        '/^update\s+(?P<id>\d+)\s+(?P<name>[^,]+)\s*,\s*(?P<email>[^,]+)\s*,\s*(?P<phone_number>[^,]+)$/',
+        $line,
+        $matches
+    )) {
+        $id = (int) $matches['id'];
+        $name = trim($matches['name']);
+        $email = trim($matches['email']);
+        $phone_number = trim($matches['phone_number']);
+
+        if (!preg_match('/^[^\s@]+@[^\s@]+\.[^\s@]+$/', $email)) {
+            echo "Email invalide" . PHP_EOL;
+        } elseif (!preg_match('/^\d{10}$/', $phone_number)) {
+            echo "Numéro invalide (10 chiffres attendus)" . PHP_EOL;
+        } else {
+            $contactManager = new ContactManager();
+            $command = new Command($contactManager);
+            $command->update($id, $name, $email, $phone_number);
+        }
     } elseif (preg_match('/^delete\s+(?P<id>\d+)$/', $line, $matches)) {
 
         $id = (int) $matches['id'];

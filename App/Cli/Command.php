@@ -35,6 +35,17 @@ class Command
         }
     }
 
+    public function update(int $id, string $name, string $email, string $phone_number): void
+    {
+        $updated = $this->contactManager->updateContact($id, $name, $email, $phone_number);
+
+        if ($updated) {
+            echo "Contact mis à jour." . PHP_EOL;
+        } else {
+            echo "une erreur s'est produite." . PHP_EOL;
+        }
+    }
+
     public function delete(int $id): void
     {
         $deleted = $this->contactManager->delete($id);
