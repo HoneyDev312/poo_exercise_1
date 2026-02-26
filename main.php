@@ -12,6 +12,7 @@ spl_autoload_register(static function (string $fqcn) {
 
 use App\Repository\ContactManager;
 use App\Cli\Command;
+use App\Cli\HelpCommand;
 
 while (true) {
     $line = trim(readline(PHP_EOL . "Attention à la syntaxe des commandes, les espaces et virgules sont importants." . PHP_EOL . PHP_EOL . "Entrez votre commande (help, list, detail, create, delete, quit) : "));
@@ -52,6 +53,9 @@ while (true) {
         $contactManager = new ContactManager();
         $command = new Command($contactManager);
         $command->delete($id);
+    } elseif ($line === "help" || $line === "aide") {
+        $command = new HelpCommand();
+        $command->help();
     } elseif ($line === "quit" || $line === "q") {
         return;
     } else {
