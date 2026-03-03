@@ -6,10 +6,10 @@ namespace App\Entity;
 
 class Contact
 {
-    public ?int $id;
-    public string $name;
-    public string $email;
-    public string $phone_number;
+    private ?int $id;
+    private string $name;
+    private string $email;
+    private string $phone_number;
 
     // Constructeur : crée un objet Contact et initialise ses propriétés
     public function __construct(?int $id = null, string $name = "", string $email = "", string $phone_number = "")

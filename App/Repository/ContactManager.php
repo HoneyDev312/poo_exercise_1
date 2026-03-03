@@ -31,11 +31,12 @@ class ContactManager
 
         // Transforme chaque ligne SQL en objet Contact
         while (($row = $statement->fetch())) {
-            $contact = new Contact();
-            $contact->id = (int) $row['id'];
-            $contact->name = $row['name'];
-            $contact->email = $row['email'];
-            $contact->phone_number = $row['phone_number'];
+            $contact = new Contact(
+                (int) $row['id'],
+                $row['name'],
+                $row['email'],
+                $row['phone_number']
+            );
 
             $contacts[] = $contact;
         }
@@ -55,11 +56,12 @@ class ContactManager
         $contact = "";
 
         while (($row = $statement->fetch())) {
-            $contact = new Contact();
-            $contact->id = (int) $row['id'];
-            $contact->name = $row['name'];
-            $contact->email = $row['email'];
-            $contact->phone_number = $row['phone_number'];
+            $contact = new Contact(
+                (int) $row['id'],
+                $row['name'],
+                $row['email'],
+                $row['phone_number']
+            );
         }
 
         return $contact;
@@ -98,7 +100,7 @@ class ContactManager
         return ($affectedLines > 0);
     }
 
-    public function delete(string $id): bool
+    public function deleteContact(string $id): bool
     {
         // Supprime un contact par son id
         $statement = $this->connection->prepare(
