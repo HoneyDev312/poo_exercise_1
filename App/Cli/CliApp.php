@@ -17,7 +17,7 @@ class CliApp
 
     public function __construct()
     {
-        // Initialise et instanciation des dépendances une seule fois au démarrage de l'application CLI
+        // Initialise des dépendances une seule fois au démarrage de l'application CLI
         $contactManager = new ContactManager();
         $this->command = new Command($contactManager);
         $this->helpCommand = new HelpCommand();
