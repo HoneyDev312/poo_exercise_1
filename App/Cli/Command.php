@@ -64,7 +64,7 @@ class Command
     public function delete(int $id): void
     {
         // Supprime un contact à partir de son id
-        $deleted = $this->contactManager->delete($id);
+        $deleted = $this->contactManager->deleteContact($id);
 
         if ($deleted) {
             echo "Contact effacé." . PHP_EOL;
